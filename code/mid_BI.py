@@ -123,12 +123,12 @@ if expInfo['handedness'] == 'right':
     rerun_MRT = 'r'
     end_MRT_Keys = startKeys + [rerun_MRT]
 elif expInfo['handedness'] == 'left':
-    forwardKeys = ['4']
-    backKey = '3'
+    forwardKeys = ['2']
+    backKey = '1'
     startKeys = ['enter','return']
     fMRI_trigger = ['5']  # This is the fMRI trigger button that starts the task
     ttlKey = "5"
-    expKeys = ['4','3','escape', 'esc']
+    expKeys = ['1','2','escape', 'esc']
     escapeKeys = ['escape', 'esc']
     rerun_MRT = 'r'
     end_MRT_Keys = startKeys + [rerun_MRT]
