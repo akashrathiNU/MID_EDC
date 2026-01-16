@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-MID_BI.py
+MID_EDC.py
 
 Monetary incentive delay task with valences for reward/loss and a neutral
 condition, for 6 total trial types.
