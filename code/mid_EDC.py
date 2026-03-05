@@ -98,7 +98,7 @@ expInfo = {
     'fMRI trigger on TTL? (yes or no)': 'yes',
     'fMRI reverse screen? (yes or no)': 'no',
     'start run (0-2)': '0',
-    'task screen': '2',
+    'task screen': '1',
     'handedness':'right'
 }
 
