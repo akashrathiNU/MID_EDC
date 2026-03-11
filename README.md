@@ -3,7 +3,7 @@
 ## Basic Info
 
 ### Directories
-MID_BD2_UCB \
+MID_EDC \
 ├── code \
 ├── data \
 ├── misc \
