@@ -9,6 +9,11 @@ This is the practice task to be done before going into the MRI scanner.
 
 Based on code originally written by @nivreggev, see README
 Modified by Haroon Popal (hspopal on GitHub)
+
+Modified by Akash Rathi 3/11/2026 - 
+Line 358 - set frame rate to 1/60
+Line 100 - set monitor dimensions for EDC stim pres laptop
+Lines 202 & 190 - changed language for review screen
 """
 
 from psychopy import gui, visual, core, data, event, logging, monitors
@@ -93,7 +98,7 @@ def make_screen():
         win_res = [800, 600]
         screen=1
     else:
-        win_res = [1920, 1080]
+        win_res = [2550,1200]#[1920, 1080]
         screen=0
     exp_mon = monitors.Monitor('exp_mon')
     exp_mon.setSizePix(win_res)
@@ -182,7 +187,7 @@ def display_instructions_file(inst_file, instructions, run):
                                             flipHoriz=flipHoriz,
                                             alignText='center')
                 cuex_desc = visual.TextStim(win, pos=[-0.35, -0.15], 
-                                            text="Cue: don't respond yet", 
+                                            text="Cue", 
                                             height=fontH, wrapWidth=0.15,
                                             color=text_color, 
                                             flipHoriz=flipHoriz, 
@@ -194,7 +199,7 @@ def display_instructions_file(inst_file, instructions, run):
                                             flipHoriz=flipHoriz, 
                                             alignText='center')
                 targ_desc = visual.TextStim(win, pos=[0.15, -0.15], 
-                                            text='Respond when solid triangle is on screen', 
+                                            text='Press button', 
                                             height=fontH, wrapWidth=0.15,
                                             color=text_color, 
                                             flipHoriz=flipHoriz, 
@@ -352,7 +357,7 @@ text_color = 'white'
 # Store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
 if expInfo['frameRate'] != None and expInfo['frameRate'] < 300:
-    frame_duration = 1.0 / round(expInfo['frameRate'])
+    frame_duration = 1.0 / 60.0 #round(expInfo['frameRate'])
 else:
     frame_duration = 1.0 / 60.0  # Could not measure, so guess
 
