@@ -14,6 +14,7 @@ To change run length would require regenerating new order files.
 Based on code originally written by @nivreggev, see README; Modified by Haroon Popal (hspopal on GitHub)
 Last modified by Nina Kougan (ninakougan@u.northwestern.edu) on 04/08/25
 Last modified by Akash Rathi (akash@u.northwestern.edu) on 12/22/25
+Last modified by Akash Rathi (akash@u.northwestern.edu) on 3/11/26 (changed screen dimensions to match monitor at CTI)
 
 
 """
@@ -164,7 +165,7 @@ def make_screen(screen):
     so keep that resolution since bars on the side do not affect this.
     """
     if fmri:
-        win_res = [800, 600]
+        win_res = [3840,2160]#[800, 600]
         #screen=1
     else:
         win_res = [1920, 1080]
