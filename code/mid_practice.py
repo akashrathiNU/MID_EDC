@@ -69,14 +69,11 @@ single_speed_factor = 0.02
 
 total_earnings = 0
 
-
-# Define accepted inputs
 # These are the buttons that are pressed by the participant and experimentor
-forwardKeys = ['1','6']  # Used to advance through the task instructions
+forwardKeys = ['1']  # Used to advance through the task instructions
 backKey = '2'  # "Secret" key to go back in the instructions
 startKeys = ['enter','return']  # Used to start task after instructions
-ttlKey = "5"
-expKeys = ['1','2','6']
+expKeys = ['1','2']
 escapeKeys = ['escape', 'esc']  # Used to exit out of the task
 
 # Define some variables that are used to rerun the task
@@ -158,22 +155,22 @@ def display_instructions_file(inst_file, instructions, run):
         # Create the task order page. This is "hard coded" instead of using
         # an image so that there is consitent resolution on different screens
         if instr_images[instructLine] == 'task_order':
-                fix1_exmp = visual.TextStim(win, pos=[-0.65, 0.15], 
+                fix1_exmp = visual.TextStim(win, pos=[-0.65, 0], 
                                             text='+', height=fontH*2, 
                                             color=text_color, 
                                             flipHoriz=flipHoriz)
-                cuex_exmp = visual.ImageStim(win, pos=[-0.35,0.15], size=0.2,
+                cuex_exmp = visual.ImageStim(win, pos=[-0.375,0], size=0.2,
                                              image=stim_dir+"reward_high.png")
-                fix2_exmp = visual.TextStim(win, pos=[-0.15, 0.15], text='+', 
+                fix2_exmp = visual.TextStim(win, pos=[-0.10, 0], text='+', 
                                             height=fontH*2, color=text_color, 
                                             flipHoriz=flipHoriz)
-                targ_exmp = visual.Polygon(win, pos=[0.15,0.15], edges=3, 
+                targ_exmp = visual.Polygon(win, pos=[0.15,0], edges=3, 
                                            radius=0.1, fillColor="white")
-                fix3_exmp = visual.TextStim(win, pos=[0.35, 0.15], text='+', 
+                fix3_exmp = visual.TextStim(win, pos=[0.35, 0], text='+', 
                                             height=fontH*2, 
                                             color=text_color, 
                                             flipHoriz=flipHoriz)
-                fdbk_exmp = visual.TextStim(win, pos=[0.65, 0.15], 
+                fdbk_exmp = visual.TextStim(win, pos=[0.60, 0], 
                                             text='Hit!\n+$5.00', 
                                             height=fontH*2, 
                                             color=text_color, 
@@ -222,12 +219,12 @@ def display_instructions_file(inst_file, instructions, run):
                 targ_exmp.draw()
                 fix3_exmp.draw()
                 fdbk_exmp.draw()
-                fix1_desc.draw()
-                cuex_desc.draw()
-                fix2_desc.draw()
-                targ_desc.draw()
-                fix3_desc.draw()
-                fdbk_desc.draw()
+                #fix1_desc.draw()
+                #cuex_desc.draw()
+                #fix2_desc.draw()
+                #targ_desc.draw()
+                #fix3_desc.draw()
+                #fdbk_desc.draw()
                 
         # Create the example cues instructions page
         elif 'example' in instr_images[instructLine]:
@@ -259,8 +256,11 @@ def display_instructions_file(inst_file, instructions, run):
                 temp_image.size += temp_size
                 
                 temp_image.draw()
-            
-        
+
+        elif 'fix' in instr_images[instructLine]:
+            fix_cross = visual.TextStim(win, text='+',height=0.15,color='white',pos=(0, 0.1))
+            fix_cross.draw()
+
         elif instr_images[instructLine] != 'none' and run == 0:
             # Create the probe image
             if instr_images[instructLine] == 'probe.png':
@@ -269,8 +269,8 @@ def display_instructions_file(inst_file, instructions, run):
                 inst_target.draw()
             # Display the imported image
             else:
-                size = 0.4
-                position_y = -yScr/20
+                size = 0.5 #0.4
+                position_y = -yScr/13 #20
                 instr_image = visual.ImageStim(win, size=size, 
                                            pos=(0, position_y),
                                            image=inst_dir+instr_images[instructLine])
@@ -304,6 +304,7 @@ expInfo = {
     'fMRI? (yes or no)': 'no',
     'fMRI trigger on TTL? (yes or no)': 'no',
     'fMRI reverse screen? (yes or no)': 'no',
+    'handedness': ''
 }
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
@@ -329,6 +330,21 @@ if expInfo['fMRI reverse screen? (yes or no)'].lower() == 'yes':
 else:
     flipHoriz = False
 
+
+if expInfo['handedness'] == 'right':
+    # These are the buttons that are pressed by the participant and experimentor
+    forwardKeys = ['1']  # Used to advance through the task instructions
+    backKey = '2'  # "Secret" key to go back in the instructions
+    startKeys = ['enter','return']  # Used to start task after instructions
+    expKeys = ['1','2']
+    escapeKeys = ['escape', 'esc']  # Used to exit out of the task
+elif expInfo['handedness'] == 'left':
+    # These are the buttons that are pressed by the participant and experimentor
+    forwardKeys = ['2']  # Used to advance through the task instructions
+    backKey = '1'  # "Secret" key to go back in the instructions
+    startKeys = ['enter','return']  # Used to start task after instructions
+    expKeys = ['1','2']
+    escapeKeys = ['escape', 'esc']  # Used to exit out of the task
 
 # Run number set to zero to make sure this is a practice run
 run = 0
@@ -368,7 +384,7 @@ instructMoveText = f"Press the button to continue."
 
 
 instructMove = visual.TextStim(win, text=instructMoveText, height=fontH, 
-                                color=text_color, pos=[0, -yScr/3], 
+                                color=text_color, pos=[0, -yScr/2.5], 
                                 flipHoriz=flipHoriz)
 
 
@@ -449,7 +465,7 @@ breakPrompt = visual.TextStim(win, text="Take a break. When you are ready to con
 breakEnd = visual.TextStim(win, text="Get ready", height=fontH, 
                            color=text_color, pos=(0,0), flipHoriz=flipHoriz)
                            
-waitPrompt = visual.TextStim(win, text="Please wait\n\n", 
+waitPrompt = visual.TextStim(win, text="Any questions?\n\n", 
                               height=fontH, color=text_color, pos=(0,0), 
                               flipHoriz=flipHoriz)
 
@@ -563,16 +579,16 @@ while run < num_runs:
     
     inst_file = 'practice_instructions.csv'    
     instructions = ["We will now practice the Money Game that you will be doing in the scanner.\n\nYour goal is to win money and avoid losing money.\n\n\n\nThis game has many rounds.\n\nEvery round has the same basic order of events.",
-    "First you will see a cross in the middle of the screen, like this:\n\n+\n\nThis means you should focus on the screen and get ready to play. ",
+    "First you will see a cross in the middle of the screen, like this:\n\n\n\n\n\nThis means you should focus on the screen and get ready to play. ",
     "Next you will see a cue that tells you if you can win or lose money.\nIt will also tell you how much money you can win or lose for that round.\n\nHere are the 6 possibilities:\n\n\n\n\n\n\n",
-    "Then, you will see another cross in the middle of the screen:\n\n\n\n+",
+    "Then, you will see another cross in the middle of the screen:\n\n\n\n\n\n",
     "Next, a solid WHITE TRIANGLE will appear VERY BRIEFLY on the screen:\n\n \n\n \n\n \n\nTo win money or avoid losing money you need to press the button while the solid WHITE TRIANGLE is on the screen.",
     "For WIN CIRCLES, pressing the button while the solid white triangle is on the screen means you will WIN money.\n\nIf you press too late, you will MISS WINNING money.\n\n\n\n\n\n\n\n",
     "For LOSE SQUARES, pressing the button while the solid white triangle is on the screen means you will NOT LOSE money.\n\nIf you press too late, you WILL LOSE money.\n\n\n\n\n\n\n\n",
     "Make sure to try and respond to every triangle, including for the $0.00 rounds.\n\n\n\n\n\n",
     "We will let you know if you pressed the button in time and if you won or lost money for that round.\n\n\n\n\n\n",
     "During each round, this is the order that you will see things happen:\n\n\n\n\n\n\n\n\n\n",
-    "Major points to remember:\n\n1. Do not press the button on the win circles, lose squares, or the crosses. Just respond to the SOLID WHITE TRIANGLES.\n\n2. Try to press the button EVERY time you see the solid white triangle.\n\n3. The SOLID WHITE TRIANGLE appears VERY BRIEFLY, so you will have to press the button QUICKLY when you see it.\n\n4. Things move fast in this game, so you will want to keep your finger on the button, ready to respond.",
+    "Major points to remember:\n\n1. Do not press the button on the win circles, lose squares, or the crosses. Just respond to the SOLID WHITE TRIANGLES.\n\n2. Try to press the button EVERY time you see the solid white triangle.\n\n3. The solid white triangle appears VERY BRIEFLY, so you will have to press the button QUICKLY when you see it.\n\n4. Things move fast in this game, so you will want to keep your finger on the button, ready to respond.",
     "Any Questions?\n\nPlease ask them now."]
     
     display_instructions_file(inst_file, instructions, run)
@@ -967,9 +983,9 @@ while run < num_runs:
     if run == 0:
         # If done with the practice run, show the post-practice stuff
         total_earnings = 0
-        breakPrompt.draw()
-        win.flip()
-        event.waitKeys(keyList=forwardKeys)
+        #breakPrompt.draw()
+        #win.flip()
+        #event.waitKeys(keyList=forwardKeys)
         
         waitPrompt.draw()
         win.flip()

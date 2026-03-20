@@ -1,8 +1,8 @@
 ﻿instructions,images
 """We will now practice the Money Game that you will be doing in the scanner.\n\n\n\nYourgoal is to win money and avoid losing money.\n\n\n\nThis game has many rounds.\n\nEvery round has the same basic order of events.""",none
-"""First you will see a cross in the middle of the screen, like this:\n\n+\n\nThis means you should focus on the screen and get ready to play. "",",none
+"""First you will see a cross in the middle of the screen, like this:\n\n+\n\nThis means you should focus on the screen and get ready to play. "",",fix_cross
 """Next you will see a cue that tells you if you can win or lose monye.\n\nIt will also tell you how much money you can win or lose for that round.\n\nHere are the 6 possibilities:\n\n"",",example_cues
-"""Then, you will see another cross in the middle of the screen:\n\n\n\n+""",none
+"""Then, you will see another cross in the middle of the screen:\n\n\n\n+""",fix_cross
 """Next, a small solid WHITE TRIANGLE will appear VERY BRIEFLY on the screen:\n\n \n\n \n\n \n\n \n\nTo win money or avoid losing money you need to press the button while the solid WHITE TRIANGLE is on the screen.""",probe.png
 """For WIN CIRCLES, pressing the button while the solid white triangle is on the screen means you will WIN money.\n\n\n\n\n\nIf you press too late, you will MISS WINNING money.""",example_cues_reward
 """For LOSE SQUARES, pressing the button while the solid white triangle is on the screen means you will NOT LOSE money.\n\n\n\n\n\nIf you press too late, you WILL LOSE money.\n\n""",example_cues_loss
