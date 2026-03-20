@@ -236,21 +236,21 @@ def display_instructions_file(inst_file, instructions, run):
                 win.flip()
             
             else:    
-                fix1_exmp = visual.TextStim(win, pos=[-0.60, 0.15], 
+                fix1_exmp = visual.TextStim(win, pos=[-0.65, 0], 
                                             text='+', height=fontH*2, 
                                             color=text_color, 
                                             flipHoriz=flipHoriz)
-                cuex_exmp = visual.ImageStim(win, pos=[-0.38,0.15], size=0.2,
+                cuex_exmp = visual.ImageStim(win, pos=[-0.375,0], size=0.2,
                                              image=stim_dir+"reward_high.png")
-                fix2_exmp = visual.TextStim(win, pos=[-0.16, 0.15], text='+', 
+                fix2_exmp = visual.TextStim(win, pos=[-0.10, 0], text='+', 
                                             height=fontH*2, color=text_color, 
                                             flipHoriz=flipHoriz)
-                targ_exmp = visual.Polygon(win, pos=[0.06,0.15], edges=3, 
+                targ_exmp = visual.Polygon(win, pos=[0.15,0], edges=3, 
                                            radius=0.1, fillColor="white")
-                fix3_exmp = visual.TextStim(win, pos=[0.28, 0.15], text='+', 
+                fix3_exmp = visual.TextStim(win, pos=[0.35, 0], text='+', 
                                             height=fontH*2, color=text_color, 
                                             flipHoriz=flipHoriz)
-                fdbk_exmp = visual.TextStim(win, pos=[0.50, 0.15], 
+                fdbk_exmp = visual.TextStim(win, pos=[0.60, 0], 
                                             text='Hit!\n+$5.00', 
                                             height=fontH*2, 
                                             color=text_color, 
@@ -299,12 +299,12 @@ def display_instructions_file(inst_file, instructions, run):
                 targ_exmp.draw()
                 fix3_exmp.draw()
                 fdbk_exmp.draw()
-                fix1_desc.draw()
-                cuex_desc.draw()
-                fix2_desc.draw()
-                targ_desc.draw()
-                fix3_desc.draw()
-                fdbk_desc.draw()
+                #fix1_desc.draw()
+                #cuex_desc.draw()
+                #fix2_desc.draw()
+                #targ_desc.draw()
+                #fix3_desc.draw()
+                #fdbk_desc.draw()
                 
                 win.flip()
         
@@ -388,7 +388,7 @@ instructFinish = visual.TextStim(win, text=endInstructions,
 
 # Initialize components for task transitions
 wait = visual.TextStim(win, pos=[0, 0], text="The task will begin momentarily. Waiting for scanner. Get ready...", height=fontH, color=text_color, flipHoriz=flipHoriz)
-endf = visual.TextStim(win, pos=[0, 0], text="Thank you. You are done with this activity. Please stay still until this part is over.",wrapWidth=wrapW, height=fontH, color=text_color, flipHoriz=flipHoriz)
+endf = visual.TextStim(win, pos=[0, 0], text="Please stay still until the scan is complete.\nThe experimenter will check in with you soon.",wrapWidth=wrapW, height=fontH, color=text_color, flipHoriz=flipHoriz)
 
 # Initialize components for Routine "cue"
 cues = {
@@ -427,19 +427,19 @@ exp_feedback = visual.TextStim(win=win, name='exp_feedback',
                                colorSpace='rgb', opacity=1, 
                                flipHoriz=flipHoriz);
 
-breakPrompt = visual.TextStim(win, text="Take a break and please stay still until the scan is complete.\nThe experimenter will start the second round of the money game in a few minutes.", 
+breakPrompt = visual.TextStim(win, text="Please stay still until the scan is complete.\nThe experimenter will check in with you soon.", 
                               height=fontH, color=text_color, pos=(0,0), 
                               flipHoriz=flipHoriz)
                               
-waitForStructPrompt = visual.TextStim(win, text="Thank you! The experimenter will start the money game soon.", 
+waitForStructPrompt = visual.TextStim(win, text="Any questions?\n\nWhen you are ready to begin the task, place your pointer finger on the button.", 
                               height=fontH, color=text_color, pos=(0,0), 
                               flipHoriz=flipHoriz)
 
-continueToMIDPrompt = visual.TextStim(win, text="Thank you for playing the triangle game! We will now go through the instructions for the money game.\nPress the pointer button to continue.", 
+continueToMIDPrompt = visual.TextStim(win, text="Thank you for playing the Triangle Game! We will now go through the instructions for the Money Game.\nPress the pointer button to continue.", 
                               height=fontH, color=text_color, pos=(0,0), 
                               flipHoriz=flipHoriz)
 
-rerunPrompt = visual.TextStim(win, text="Re-running the triangle game. Try to press the pointer button as fast as you can when the triangle appears!", 
+rerunPrompt = visual.TextStim(win, text="Please wait for the experimenter to begin the second round of the Triangle Game.", 
                               height=fontH, color=text_color, pos=(0,0), 
                               flipHoriz=flipHoriz)
 
@@ -562,22 +562,22 @@ while run < num_runs:
 
     if run == 0:
         inst_file = "MRT_instructions.csv"
-        instructions = ["Welcome to the triangle game!",
+        instructions = ["Welcome to the Triangle Game!",
         "First you will see a cross in the middle of the screen, like this:\n\n+\n\n"+
         "This means you should focus on the screen and get ready to play. ",
-        "Next, a small solid WHITE TRIANGLE will appear on the screen:\n\n \n\n \n\n \n\n"+
+        "Next, a small SOLID WHITE TRIANGLE will appear on the screen:\n\n \n\n \n\n \n\n"+
         "Press the pointer button as fast as you can when you see the solid white triangle. "]
     
     else:
         inst_file = "scanner_task.csv"
-        instructions = ["Instructions...\n\n"+
+        instructions = [
         "Your goal is to make as much money as possible.\n\n"+
         "Remember:\n"+
         "WIN CIRCLES = win money\n"+
         "LOSE SQUARES = lose money\n\n"+
         "QUICKLY press the pointer button with your pointer finger when you see the solid white triangle.\n\n"+
         "You will get feedback on whether you pressed the pointer button in time and if you won or lost money.",
-        ""]
+        "\n"]
         
     
     #if fmri:
@@ -585,11 +585,12 @@ while run < num_runs:
     
     display_instructions_file(inst_file, instructions, run)
 
+    '''
     if run == 1:
         waitForStructPrompt.draw()
         win.flip()
         keyboard.waitForKeys(keys=startKeys, etype=keyboard.KEY_PRESS)
-
+    '''
     
     print("end of instructions, hit enter to continue")
     logging.flush()
